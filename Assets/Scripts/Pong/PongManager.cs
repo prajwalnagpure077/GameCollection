@@ -71,7 +71,7 @@ public class PongManager : MonoBehaviour
         {
             Destroy(ball);
         }
-        Score.text = $"{EnemyScore} : {PlayerScore}";
+        Score.text = $"<color=#FF9B9B>{EnemyScore}</color> : <color=#6BFFC7>{PlayerScore}</color>";
         ball = Instantiate(BallPrefab, Vector3.zero, Quaternion.identity);
         ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((UnityEngine.Random.value > 0.5f) ? 1 : -1, Mathf.Clamp(UnityEngine.Random.Range(-0.7f, 0.7f),0.2f,1f)) * 6, ForceMode2D.Impulse);
         if (EnemyScore >= 10)
