@@ -115,12 +115,9 @@ public class PlayerInputManager : MonoBehaviour
                     }
                 }
             }
-            else
+            if (Vector2.Distance(_startPressPosition,Input.mousePosition) < 1f)
             {
-                if (_startPressPosition.x < Screen.width / 2)
-                    Managers.Game.currentShape.movementController.RotateClockWise(false);
-                else
-                    Managers.Game.currentShape.movementController.RotateClockWise(true);
+                Managers.Game.currentShape.movementController.RotateClockWise(false);
             }
         }
     }

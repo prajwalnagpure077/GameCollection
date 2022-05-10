@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PongManager : MonoBehaviour
 {
+    [SerializeField] GameObject popup;
+    [SerializeField] Text timeComplete,Message;
+
+
     [SerializeField,Range(0,5)]
     float enemySpeed;
     [SerializeField, Range(0f, 0.2f)]
@@ -76,11 +81,19 @@ public class PongManager : MonoBehaviour
         ball.GetComponent<Rigidbody2D>().AddForce(new Vector2((UnityEngine.Random.value > 0.5f) ? 1 : -1, Mathf.Clamp(UnityEngine.Random.Range(-0.7f, 0.7f),0.2f,1f)) * 6, ForceMode2D.Impulse);
         if (EnemyScore >= 10)
         {
-            //Prajwal Lost
+            Time.timeScale = 0;
+            popup.SetActive(true);
+            Message.text = "You lose";
+            var _time = TimeSpan.FromSeconds(time);
+            timeComplete.text = string.Format("{0:D2}:{1:D2}", _time.Minutes, _time.Seconds, _time.Milliseconds.ToString().Substring(0, 1));
         }
         else if (PlayerScore >= 10)
         {
-            //Prajwal Won
+            Time.timeScale = 0;
+            popup.SetActive(true);
+            Message.text = "You won";
+            var _time = TimeSpan.FromSeconds(time);
+            timeComplete.text = string.Format("{0:D2}:{1:D2}", _time.Minutes, _time.Seconds, _time.Milliseconds.ToString().Substring(0, 1));
         }
     }
 }
